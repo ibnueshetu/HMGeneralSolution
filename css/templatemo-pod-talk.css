@@ -1245,3 +1245,13 @@ main {
 
 }
 
+/* Ensure dropdowns are hidden by default on mobile view */
+@media (max-width: 991px) {
+  .navbar-collapse .dropdown-menu {
+    display: none !important; /* Hide the dropdowns by default */
+  }
+
+  .navbar-collapse .dropdown.show .dropdown-menu {
+    display: block !important; /* Only show the dropdown on toggle */
+  }
+}
