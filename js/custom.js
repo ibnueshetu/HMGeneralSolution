@@ -4,9 +4,17 @@
   "use strict";
 
     // MENU
-    $('.navbar-collapse a').on('click',function(){
-      $(".navbar-collapse").collapse('hide');
-    });
+    // $('.navbar-collapse a').on('click',function(){
+    //   $(".navbar-collapse").collapse('hide');
+    // });
+    // MENU
+$('.navbar-collapse a').on('click', function() {
+  // Exclude the dropdown links from triggering the collapse
+  if (!$(this).closest('.dropdown').length) {
+    $(".navbar-collapse").collapse('hide');
+  }
+});
+
     
     // CUSTOM LINK
     $('.smoothscroll').click(function(){
