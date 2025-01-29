@@ -2,59 +2,44 @@
     "use strict";
 
     $(document).ready(function () {
-        // Ensure Bootstrap's dropdown works in mobile
+        // Toggle navbar for mobile
+        $('.navbar-toggler').on('click', function () {
+            $('.navbar-collapse').toggleClass('show');
+        });
+
+        // Close the entire navbar when clicking the "X" button
+        $('.navbar-toggler').on('click', function () {
+            if ($('.navbar-collapse').hasClass('show')) {
+                $('.navbar-collapse').collapse('hide'); // Properly closes navbar
+            }
+        });
+
+        // Close the navbar when clicking on any link inside it (except dropdown toggles)
+        $('.navbar-collapse a:not(.dropdown-toggle)').on('click', function () {
+            $(".navbar-collapse").collapse('hide');
+        });
+
+        // Ensure Bootstrap dropdowns work correctly in mobile
         $(".dropdown-toggle").on("click", function (e) {
-            e.preventDefault(); // Prevent default anchor behavior
-            e.stopPropagation(); // Prevent closing other dropdowns
+            e.preventDefault(); // Prevent default link behavior
+            e.stopPropagation(); // Prevent dropdown from closing immediately
 
             var $dropdownMenu = $(this).next(".dropdown-menu");
             var isVisible = $dropdownMenu.hasClass("show");
 
-            // Close all dropdowns
+            // Close other dropdowns
             $(".dropdown-menu").removeClass("show");
 
-            // Toggle clicked dropdown
+            // Toggle current dropdown
             if (!isVisible) {
                 $dropdownMenu.addClass("show");
             }
         });
 
-        // Close dropdowns when clicking anywhere else
+        // Close dropdowns when clicking outside
         $(document).on("click", function (e) {
             if (!$(e.target).closest(".dropdown").length) {
                 $(".dropdown-menu").removeClass("show");
-            }
-        });
-
-        // Navbar toggle for mobile menu
-        $('.navbar-toggler').on('click', function () {
-            $('.navbar-collapse').toggleClass('show');
-        });
-
-        // Close navbar collapse when clicking on a non-dropdown item
-        $('.navbar-collapse a').on('click', function () {
-            var isDropdownLink = $(this).closest('.dropdown').length;
-            if (!isDropdownLink) {
-                $(".navbar-collapse").collapse('hide');
-            }
-        });
-
-        // Smooth scrolling
-        $('.smoothscroll').click(function () {
-            var target = $(this).attr('href');
-            var $targetElement = $(target);
-            var headerHeight = $('.navbar').height();
-
-            scrollToDiv($targetElement, headerHeight);
-            return false;
-
-            function scrollToDiv(element, navHeight) {
-                var offsetTop = element.offset().top;
-                var totalScroll = offsetTop - navHeight;
-
-                $('html, body').animate({
-                    scrollTop: totalScroll
-                }, 300);
             }
         });
     });

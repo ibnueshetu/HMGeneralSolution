@@ -243,23 +243,6 @@ main {
   border-color: var(--white-color);
   color: var(--white-color);
 }
-@media (max-width: 991px) {
-  .dropdown-menu {
-      display: none;
-      position: static !important;
-      background-color: #ffffff; /* Adjust as needed */
-      box-shadow: none;
-  }
-
-  .dropdown-menu.show {
-      display: block;
-  }
-
-  .navbar-nav .dropdown-toggle::after {
-      display: none; /* Hide default caret in mobile view */
-  }
-}
-
 
 
 /*---------------------------------------
@@ -1270,6 +1253,8 @@ main {
   .navbar-collapse .dropdown-menu {
     display: none !important; /* Hide the dropdowns by default */
   }
+
+  
 }
 
 @media (max-width: 991px) {
@@ -1281,8 +1266,6 @@ main {
       display: block !important; /* Show only active dropdown */
   }
 }
-
-
 
 
 
