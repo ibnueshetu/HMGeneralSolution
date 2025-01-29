@@ -50,6 +50,9 @@ body {
   background-color: var(--white-color);
   font-family: var(--body-font-family); 
 }
+body {
+  font-family: "Times New Roman", Times, serif !important;
+}
 
 
 /*---------------------------------------
@@ -136,6 +139,9 @@ strong {
 ::selection {
   background-color: var(--primary-color);
   color: var(--white-color);
+}
+html, body, p, h1, h2, h3, h4, h5, h6, a, span, div {
+  font-family: "Times New Roman", Times, serif !important;
 }
 
 
