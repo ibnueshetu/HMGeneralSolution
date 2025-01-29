@@ -243,6 +243,23 @@ main {
   border-color: var(--white-color);
   color: var(--white-color);
 }
+@media (max-width: 991px) {
+  .dropdown-menu {
+      display: none;
+      position: static !important;
+      background-color: #ffffff; /* Adjust as needed */
+      box-shadow: none;
+  }
+
+  .dropdown-menu.show {
+      display: block;
+  }
+
+  .navbar-nav .dropdown-toggle::after {
+      display: none; /* Hide default caret in mobile view */
+  }
+}
+
 
 
 /*---------------------------------------
@@ -1247,11 +1264,25 @@ main {
 
 /* Ensure dropdowns are hidden by default on mobile view */
 @media (max-width: 991px) {
-  .navbar-collapse .dropdown-menu {
-    display: none !important; /* Hide the dropdowns by default */
-  }
-
   .navbar-collapse .dropdown.show .dropdown-menu {
     display: block !important; /* Only show the dropdown on toggle */
   }
+  .navbar-collapse .dropdown-menu {
+    display: none !important; /* Hide the dropdowns by default */
+  }
 }
+
+@media (max-width: 991px) {
+  .dropdown-menu {
+      display: none; /* Hide dropdowns by default */
+  }
+
+  .dropdown-menu.show {
+      display: block !important; /* Show only active dropdown */
+  }
+}
+
+
+
+
+

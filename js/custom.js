@@ -1,60 +1,62 @@
+(function ($) {
+    "use strict";
 
-  (function ($) {
-  
-  "use strict";
+    $(document).ready(function () {
+        // Ensure Bootstrap's dropdown works in mobile
+        $(".dropdown-toggle").on("click", function (e) {
+            e.preventDefault(); // Prevent default anchor behavior
+            e.stopPropagation(); // Prevent closing other dropdowns
 
-    // MENU
-    // $('.navbar-collapse a').on('click',function(){
-    //   $(".navbar-collapse").collapse('hide');
-    // });
-    // MENU
-$('.navbar-collapse a').on('click', function() {
-  // Exclude the dropdown links from triggering the collapse
-  if (!$(this).closest('.dropdown').length) {
-    $(".navbar-collapse").collapse('hide');
-  }
-});
+            var $dropdownMenu = $(this).next(".dropdown-menu");
+            var isVisible = $dropdownMenu.hasClass("show");
 
-    
-    // CUSTOM LINK
-    $('.smoothscroll').click(function(){
-      var el = $(this).attr('href');
-      var elWrapped = $(el);
-      var header_height = $('.navbar').height();
-  
-      scrollToDiv(elWrapped,header_height);
-      return false;
-  
-      function scrollToDiv(element,navheight){
-        var offset = element.offset();
-        var offsetTop = offset.top;
-        var totalScroll = offsetTop-0;
-  
-        $('body,html').animate({
-        scrollTop: totalScroll
-        }, 300);
-      }
-    });
+            // Close all dropdowns
+            $(".dropdown-menu").removeClass("show");
 
-    $('.owl-carousel').owlCarousel({
-        center: true,
-        loop: true,
-        margin: 30,
-        autoplay: true,
-        responsiveClass: true,
-        responsive:{
-            0:{
-                items: 2,
-            },
-            767:{
-                items: 3,
-            },
-            1200:{
-                items: 4,
+            // Toggle clicked dropdown
+            if (!isVisible) {
+                $dropdownMenu.addClass("show");
             }
-        }
+        });
+
+        // Close dropdowns when clicking anywhere else
+        $(document).on("click", function (e) {
+            if (!$(e.target).closest(".dropdown").length) {
+                $(".dropdown-menu").removeClass("show");
+            }
+        });
+
+        // Navbar toggle for mobile menu
+        $('.navbar-toggler').on('click', function () {
+            $('.navbar-collapse').toggleClass('show');
+        });
+
+        // Close navbar collapse when clicking on a non-dropdown item
+        $('.navbar-collapse a').on('click', function () {
+            var isDropdownLink = $(this).closest('.dropdown').length;
+            if (!isDropdownLink) {
+                $(".navbar-collapse").collapse('hide');
+            }
+        });
+
+        // Smooth scrolling
+        $('.smoothscroll').click(function () {
+            var target = $(this).attr('href');
+            var $targetElement = $(target);
+            var headerHeight = $('.navbar').height();
+
+            scrollToDiv($targetElement, headerHeight);
+            return false;
+
+            function scrollToDiv(element, navHeight) {
+                var offsetTop = element.offset().top;
+                var totalScroll = offsetTop - navHeight;
+
+                $('html, body').animate({
+                    scrollTop: totalScroll
+                }, 300);
+            }
+        });
     });
-  
-  })(window.jQuery);
 
-
+})(window.jQuery);
