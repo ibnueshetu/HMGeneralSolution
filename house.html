@@ -40,53 +40,128 @@ https://templatemo.com/tm-584-pod-talk
 
 -->
     </head>
-    <style>
-       .gallery {
-    padding: 50px 0;
-    background-color: #f8f9fa;
-    text-align: center;
+ <style>
+    /* Buy & Sell Buttons */
+.buy-btn, .sell-btn {
+    display: inline-block;
+    padding: 8px 16px;
+    font-size: 16px;
+    margin: 10px 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
 }
 
-.section-title {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 30px;
+.buy-btn {
+    background-color: #28a745; /* Green */
+    color: white;
 }
 
-.gallery-item {
-    margin-bottom: 20px;
-    overflow: hidden;
+.sell-btn {
+    background-color: #dc3545; /* Red */
+    color: white;
+}
+
+.buy-btn:hover {
+    background-color: #218838;
+}
+
+.sell-btn:hover {
+    background-color: #c82333;
+}
+
+/* Modal Form Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    width: 80%;
+    max-width: 400px;
     border-radius: 10px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease-in-out;
-    background: #fff;
-    padding-bottom: 10px;
+    text-align: center;
+    position: relative;
 }
 
-.gallery-item img {
+.modal-content h3 {
+    margin-bottom: 15px;
+}
+
+.modal-content label {
+    display: block;
+    text-align: left;
+    margin: 10px 0 5px;
+}
+
+.modal-content input,
+.modal-content textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.modal-content button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.modal-content button:hover {
+    background: #0056b3;
+}
+
+.close-form {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: black;
+}
+
+/* Animation for Images */
+.image-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.image-slider img {
     width: 100%;
     height: auto;
-    border-radius: 10px 10px 0 0;
+    display: none;
+    transition: opacity 0.5s ease-in-out;
 }
 
-.gallery-info {
-    padding: 15px;
+.image-slider img:first-child {
+    display: block;
 }
 
-.gallery-info h3 {
-    font-size: 20px;
-    font-weight: bold;
-    color: #007bff;
+@keyframes fade {
+    from { opacity: 0.5; }
+    to { opacity: 1; }
 }
 
-.gallery-info p {
-    font-size: 14px;
-    color: #555;
-    margin: 5px 0;
-}
-
-
-    </style>
+ </style>
     <body>
 
         <main>
@@ -346,49 +421,108 @@ https://templatemo.com/tm-584-pod-talk
             </section>
             <section class="gallery">
                 <div class="container">
-                    <h2 class="section-title">Buy & Sell Housing Properties</h2>
+                    <h2 class="section-title">Buy & Sell Properties</h2>
                     <div class="row">
                         
                         <!-- House 1 -->
                         <div class="col-lg-4 col-md-6 col-sm-12">
                             <div class="gallery-item">
-                                <img src="images/house/house5.jpg" alt="House for Sale">
+                                <div class="image-slider">
+                                    <img src="images/house/apa01.jpg" alt="Living Room" class="house-img">
+                                    <img src="images/house/apa02.jpg" alt="Bedroom" class="house-img">
+                                    <img src="images/house/apa03.jpg" alt="Kitchen" class="house-img">
+                                </div>
                                 <div class="gallery-info">
-                                    <h3>ዋጋ፡18,500,00ዋጋ፡</h3>
+                                    <h3>አፓርትመንት ሽያጭ</h3>
                                     <p>📍 ቦሌ አትላስ ይልማ ስጋ ቤት, አድስ አበባ</p>
-                                    <p>🏠 3 መኝታ| 2 መታጠብያ | 134ካሬ</p>
+                                    <p>🏠 3 መኝታ| 2 መታጠብያ | 134ካሬ|7ኛ ፎቅ</p>
                                     <P>በጣም ጥሩ አጨራረስ ፓርኪንግ፣ሊፍት፣ጄኔሬተር የተሟላለት</P>
+                                    <p>ህንፃው  G+8 ተደርጎ የተሰራ </p>
+                                    <p>24/7 ጥበቃ በጣም ጥሩ አጨራረስ </p>
+                                    <h3>ዋጋ:18,500,000ብር</h3>
+                                    <!-- Buttons -->
+                                    <button class="buy-btn" onclick="openForm('Buy')">Buy</button>
+                                    <button class="sell-btn" onclick="openForm('Sell')">Sell</button>
                                 </div>
                             </div>
                         </div>
             
-                        <!-- House 2
+                        <!-- House 2 -->
                         <div class="col-lg-4 col-md-6 col-sm-12">
                             <div class="gallery-item">
-                                <img src="images/house2.jpg" alt="Modern Apartment">
+                                <div class="image-slider">
+                                    <img src="images/house/f01.jpg" alt="House Exterior" class="house-img">
+                                    <img src="images/house/f02.jpg" alt="Living Room" class="house-img">
+                                    <!-- <img src="images/house2-3.jpg" alt="Kitchen" class="house-img"> -->
+                                </div>
                                 <div class="gallery-info">
-                                    <h3>$320,000</h3>
-                                    <p>📍 Los Angeles, USA</p>
-                                    <p>🏠 4 Beds | 3 Baths | 1800 sqft</p>
+                                    <h3>ምን እንደሆነ አልገለጽክም</h3>
+                                    <p>📍 ፊጋ</p>
+                                    <p>🏠 1 Beds | 1 Baths | 47 sqft</p>
+                                    <h3>ዋጋ:6.9 million ብር</h3>
+                                    <!-- Buttons -->
+                                    <button class="buy-btn" onclick="openForm('Buy')">Buy</button>
+                                    <button class="sell-btn" onclick="openForm('Sell')">Sell</button>
                                 </div>
                             </div>
                         </div>
             
-                    
-                        <div class="col-lg-4 col-md-6 col-sm-12">
-                            <div class="gallery-item">
-                                <img src="images/house3.jpg" alt="Luxury Villa">
-                                <div class="gallery-info">
-                                    <h3>$500,000</h3>
-                                    <p>📍 Miami, USA</p>
-                                    <p>🏠 5 Beds | 4 Baths | 2500 sqft</p>
-                                </div>
-                            </div>
-                        </div>
-             -->
+                        <!-- Repeat for more houses -->
+              <!-- House 2 -->
+              <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="gallery-item">
+                    <div class="image-slider">
+                        <img src="images/house/s01.jpg" alt="House Exterior" class="house-img">
+                        <img src="images/house/s02.jpg" alt="Living Room" class="house-img">
+                        <img src="images/house/s03.jpg" alt="Kitchen" class="house-img">
+                    </div>
+                    <div class="gallery-info">
+                        <h3>ምን እንደሆነ አልገለጽክም(G+3 ቤት)</h3>
+                        <p>📍ሰሚት ፍየል ቤት አካባቢ</p>
+                        <p>🏠 ስፋት፡ 200ካሬ </p>
+                        <h3>ዋጋ:40 ሚሊዮን</h3>
+                        <P>👉G+3 ዘናጭ ቤት ያለው</P>
+                        <p>👉የውስጥ አስፋልት የያዘ</p>
+                        <p>👉ከፈለጉ ለመኖር ወይም ለአፓርታማ ግንባታ ተመራጭ የሆነ ቦታ ነው</p>
+
+
+                        <!-- Buttons -->
+                        <button class="buy-btn" onclick="openForm('Buy')">Buy</button>
+                        <button class="sell-btn" onclick="openForm('Sell')">Sell</button>
+                    </div>
+                </div>
+            </div>
                     </div>
                 </div>
             </section>
+        </br>
+    </br>
+</br>
+</br>
+</br>
+            <!-- Buyer/Seller Form Modal -->
+            <div id="formModal" class="modal">
+                <div class="modal-content">
+                    <span class="close-form">&times;</span>
+                    <h3 id="formTitle"></h3>
+                    <form id="requestForm">
+                        <label for="name">Full Name:</label>
+                        <input type="text" id="name" required>
+            
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" required>
+            
+                        <label for="phone">Phone Number:</label>
+                        <input type="text" id="phone" required>
+            
+                        <label for="message">Message:</label>
+                        <textarea id="message" rows="3" required></textarea>
+            
+                        <button type="submit">Submit Request</button>
+                    </form>
+                </div>
+            </div>
+            
             
             
 
@@ -534,5 +668,75 @@ https://templatemo.com/tm-584-pod-talk
         <script src="js/owl.carousel.min.js"></script>
         <script src="js/custom.js"></script>
         
+     <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    let formModal = document.getElementById("formModal");
+    let formTitle = document.getElementById("formTitle");
+    let closeFormBtn = document.querySelector(".close-form");
+
+    function openForm(action) {
+        formTitle.innerText = action + " Request";
+        formModal.style.display = "flex";
+    }
+
+    closeFormBtn.onclick = function () {
+        formModal.style.display = "none";
+    };
+
+    window.onclick = function (event) {
+        if (event.target == formModal) {
+            formModal.style.display = "none";
+        }
+        if (event.target == fullScreenModal) {
+            fullScreenModal.style.display = "none";
+        }
+    };
+
+    document.getElementById("requestForm").addEventListener("submit", function (event) {
+        event.preventDefault();
+        alert("Your request has been submitted successfully!");
+        formModal.style.display = "none";
+        this.reset();
+    });
+
+    window.openForm = openForm; // Expose function globally
+
+    // Image Slider Animation
+    document.querySelectorAll(".image-slider").forEach(function (slider) {
+        let images = slider.querySelectorAll(".house-img");
+        let index = 0;
+
+        setInterval(() => {
+            images[index].style.display = "none";
+            index = (index + 1) % images.length;
+            images[index].style.display = "block";
+        }, 3000);
+    });
+
+    // Fullscreen Image Modal
+    let fullScreenModal = document.createElement("div");
+    fullScreenModal.id = "fullScreenModal";
+    fullScreenModal.classList.add("modal");
+    fullScreenModal.innerHTML = `
+        <div class="full-screen-content">
+            <span class="close-fullscreen">&times;</span>
+            <img id="fullScreenImage" src="" alt="Full View">
+        </div>
+    `;
+    document.body.appendChild(fullScreenModal);
+
+    document.querySelectorAll(".house-img").forEach(img => {
+        img.addEventListener("click", function () {
+            document.getElementById("fullScreenImage").src = this.src;
+            fullScreenModal.style.display = "flex";
+        });
+    });
+
+    document.querySelector(".close-fullscreen").onclick = function () {
+        fullScreenModal.style.display = "none";
+    };
+});
+
+     </script>
     </body>
 </html>
